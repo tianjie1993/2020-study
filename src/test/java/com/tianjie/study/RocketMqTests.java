@@ -40,12 +40,12 @@ public class RocketMqTests {
         producer.setNamesrvAddr("192.168.11.250:10181");
         producer.setSendMsgTimeout(10000);
         // 启动Producer实例
-        String msg1 = "{\"alipay\":\"\",\"birthday\":\"1989-10-10\",\"boss_code\":\"BP003362\",\"boss_name\":\"xxx\",\"boss_type\":\"\",\"bpm_id\":\"ce99e6cd-81db-481c-b867-69557188e5ce\",\"certificate_no\":\"xxxxx\",\"city_code\":\"5113\",\"city_name\":\"xxx\",\"county_code\":\"511321\",\"county_name\":\"南部县\",\"duty\":\"54\",\"education\":\"3\",\"evaluate\":\"\",\"is_active\":1,\"marriage\":\"20\",\"mobile\":\"xxxxx\",\"nation\":\"01\",\"present_address\":\"xxxx\",\"province_code\":\"51\",\"province_name\":\"四川省\",\"remark\":\"\",\"sex\":\"1\",\"social_other\":\"客户在当地口碑好，有良好的社交关系网\",\"social_resources\":\"1\",\"version_time\":1588042858125}      ";
+        String msg1 = "测试消费流程结束信息";
         producer.start();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 100; i++) {
             // 创建消息，并指定Topic，Tag和消息体
-            Message msg = new Message("TOPIC_BPM_INTERFACE" /* Topic */,
-                    "TAG_BPM_DEALER" /* Tag */,
+            Message msg = new Message("rdp_flow_topic" /* Topic */,
+                    "close_instance" /* Tag */,
                     msg1.getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
             );
             // 发送消息到一个Broker

@@ -94,7 +94,7 @@ public class CodeGenerator {
 // pc.setModuleName("test");
         pc.setParent("com.rongzer.rdp.cpm.common.model");// 自定义包路径
         pc.setController("controller");// 这里是控制器包名，默认 web
-        pc.setEntity("mq");
+        pc.setEntity("prj");
         pc.setMapper("dao");
         pc.setXml("mapping");
         pc.setService("service");
