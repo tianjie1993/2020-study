@@ -7,13 +7,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
+import com.fasterxml.jackson.databind.ser.ResolvableSerializer;
 import com.tianjie.study.util.SpringUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class EnumSerializer extends JsonSerializer<Object> implements ContextualSerializer {
+public class EnumSerializer extends JsonSerializer<Object> implements ContextualSerializer, ResolvableSerializer {
         private String fieldName;
         private IsEnum isEnum;
 
@@ -27,23 +28,25 @@ public class EnumSerializer extends JsonSerializer<Object> implements Contextual
 
         public void serialize(final Object s, final JsonGenerator jsonGenerator, final SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
             jsonGenerator.writeObject(s);
+             System.out.println("hahahdahdafd");
 
-            try {
-                RedisTemplate redisTemplate = SpringUtil.getBean("redisTemplate");
-//                String itemKey = CacheNames.DICT_ITEM_KEY+isEnum.value()+s;
-                String itemKey = isEnum.value()+s;
-                Object itemName = redisTemplate.opsForValue().get(itemKey);
-                if(null==itemName){
-//                    itemName = SpringUtil.getBean(DictItemService.class).getItemName(isEnum.value(),String.valueOf(s));
-                    redisTemplate.opsForValue().set(itemKey,itemName,10L, TimeUnit.MINUTES);
-                }
-                jsonGenerator.writeStringField(this.fieldName + "Name", String.valueOf(itemName));
-            } catch (Exception var6) {
-            }
+//            try {
+//                RedisTemplate redisTemplate = SpringUtil.getBean("redisTemplate");
+////                String itemKey = CacheNames.DICT_ITEM_KEY+isEnum.value()+s;
+//                String itemKey = isEnum.value()+s;
+//                Object itemName = redisTemplate.opsForValue().get(itemKey);
+//                if(null==itemName){
+////                    itemName = SpringUtil.getBean(DictItemService.class).getItemName(isEnum.value(),String.valueOf(s));
+//                    redisTemplate.opsForValue().set(itemKey,itemName,10L, TimeUnit.MINUTES);
+//                }
+//                jsonGenerator.writeStringField(this.fieldName + "Name", String.valueOf(itemName));
+//            } catch (Exception var6) {
+//            }
 
         }
 
         public JsonSerializer<?> createContextual(final SerializerProvider serializerProvider, final BeanProperty beanProperty) throws JsonMappingException {
+            System.out.println("初始化---");
             if (beanProperty != null) {
                 IsEnum isEnum = beanProperty.getAnnotation(IsEnum.class);
                 if (isEnum == null) {
@@ -56,4 +59,8 @@ public class EnumSerializer extends JsonSerializer<Object> implements Contextual
             }
         }
 
+    @Override
+    public void resolve(SerializerProvider provider) throws JsonMappingException {
+            System.out.println("后去到了序列化provider");
+    }
 }

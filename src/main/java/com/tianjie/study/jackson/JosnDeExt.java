@@ -1,4 +1,4 @@
-package com.tianjie.study.compnent;
+package com.tianjie.study.jackson;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
