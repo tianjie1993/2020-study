@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.tianjie.study.mysql")
+@MapperScan({"com.tianjie.study.oracl","com.tianjie.study.mysql"})
 public class Application {
 
 //    @Bean
