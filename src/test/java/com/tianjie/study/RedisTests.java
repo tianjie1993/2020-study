@@ -1,43 +1,34 @@
 package com.tianjie.study;
 
-import com.tianjie.study.mysql.TUser;
-import com.tianjie.study.redis.LockTask;
-import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
+import com.tianjie.study.y2020.redis.LockTask;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.geo.*;
-import org.springframework.data.redis.connection.RedisCommands;
-import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.geo.Metrics;
+import org.springframework.data.geo.Point;
 import org.springframework.data.redis.connection.RedisGeoCommands;
-import org.springframework.data.redis.connection.stream.ObjectRecord;
-import org.springframework.data.redis.connection.stream.Record;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.connection.stream.StringRecord;
 import org.springframework.data.redis.core.Cursor;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import sun.plugin2.util.PojoUtil;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.*;
 
-@SpringBootTest
+//@SpringBootTest
 class RedisTests {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    @Test
+//    @Test
     void contextLoads() {
     }
 
-    @Test
+//    @Test
     public void redisBaseTest(){
         //存在String
         redisTemplate.opsForValue().set("a1","a");
@@ -72,7 +63,7 @@ class RedisTests {
      * 此外也可以是布隆过滤器的一种实现方式
      * 0 1 0 0 0 0 0 0
      */
-    @Test
+//    @Test
     public void bitmapTest(){
 
         //当前设置bitmap 为‘p’ -> 1110000
@@ -104,7 +95,7 @@ class RedisTests {
         System.out.println(bitmap.cardinality());
     }
 
-    @Test
+//    @Test
     public void hyperloglogTest(){
         for(int i=0;i<100000;i++){
             redisTemplate.opsForHyperLogLog().add("tianjie",i+"");
@@ -113,7 +104,7 @@ class RedisTests {
         System.out.println(redisTemplate.opsForHyperLogLog().size("tianjie"));
     }
 
-    @Test
+//    @Test
     public void GeoTest(){
         redisTemplate.opsForGeo().add("citys",new Point(118.801272,32.074199),"nanjing");
         redisTemplate.opsForGeo().add("citys",new Point(119.808982,33.466701),"jianhu");
@@ -128,7 +119,7 @@ class RedisTests {
         System.out.println(results);
     }
 
-    @Test
+//    @Test
     public void pubSubTest(){
         redisTemplate.convertAndSend("channel1","hello world!");
     }
@@ -138,7 +129,7 @@ class RedisTests {
      * 场景为2秒内不能访问多少次。
      * 也可以防止用户页面多次点击
      */
-    @Test
+//    @Test
     public void frequencyTest(){
 
         //在百万级的应用上。容易出现问题。因为keys命令会阻塞线程,使用rename-command KEYS "" 禁用命令
@@ -170,7 +161,7 @@ class RedisTests {
         }
     }
 
-    @Test
+//    @Test
     public void primaryKeyTest() throws InterruptedException {
         ExecutorService service = new ThreadPoolExecutor(20,20,300l,TimeUnit.SECONDS,new ArrayBlockingQueue<>(20));
         CountDownLatch countDownLatch = new CountDownLatch(20);
@@ -214,7 +205,7 @@ class RedisTests {
         }
     }
 
-    @Test
+//    @Test
     public void lockTest() throws InterruptedException {
         ExecutorService service = new ThreadPoolExecutor(5,20,300l,TimeUnit.SECONDS,new ArrayBlockingQueue<>(20));
         CountDownLatch countDownLatch = new CountDownLatch(5);
@@ -226,14 +217,14 @@ class RedisTests {
         Thread.sleep(10000L);
     }
 
-    @Test
+//    @Test
     public void TransactionlTest() throws InterruptedException {
         redisTemplate.opsForValue().getOperations().multi();
         redisTemplate.opsForValue().getOperations().exec();
 
     }
 
-    @Test
+//    @Test
     public void streamTest()  {
         Map<String,String> usr = new HashMap<>();
         usr.put("id","1");

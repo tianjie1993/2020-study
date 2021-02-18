@@ -1,19 +1,14 @@
 package com.tianjie.study;
 
-import com.tianjie.study.oracl.DeptMapper;
-import com.tianjie.study.oracl.Lock;
-import com.tianjie.study.oracl.LockMapper;
-import com.tianjie.study.util.SpringUtil;
+import com.tianjie.study.y2020.oracl.Lock;
+import com.tianjie.study.y2020.oracl.LockMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
 import java.util.concurrent.*;
 
-@SpringBootTest
+//@SpringBootTest
 public class LockTest {
 
     @Autowired

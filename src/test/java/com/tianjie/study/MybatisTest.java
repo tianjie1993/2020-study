@@ -1,15 +1,11 @@
 package com.tianjie.study;
 
-import com.tianjie.study.mysql.TUser;
-import com.tianjie.study.mysql.UserMapper;
-import org.junit.jupiter.api.Test;
+import com.tianjie.study.y2020.mysql.TUser;
+import com.tianjie.study.y2020.mysql.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.concurrent.TimeUnit;
-
-@SpringBootTest
+//@SpringBootTest
 public class MybatisTest {
 
     @Autowired
@@ -26,7 +22,7 @@ public class MybatisTest {
      * @date 2020-06-14 22:45
      * @return
      */
-    @Test
+//    @Test
     @Transactional
     public void cacheTest() throws InterruptedException {
         TUser user = userMapper.getById(1);

@@ -25,14 +25,14 @@ import java.util.concurrent.TimeUnit;
  * @auth tian.jie
  * @date {date} {time}
  */
-@SpringBootTest
+//@SpringBootTest
 public class RocketMqTests {
 
     private  final String groupName = "ad";
 
     private  final String consumeName = "ada";
 
-    @Test
+//    @Test
     public  void SyncProducer() throws Exception {
         // 实例化消息生产者Producer
         DefaultMQProducer producer = new DefaultMQProducer(groupName);
@@ -57,7 +57,7 @@ public class RocketMqTests {
         producer.shutdown();
     }
 
-    @Test
+//    @Test
         public  void AsyncProducer() throws Exception {
             // 实例化消息生产者Producer
             DefaultMQProducer producer = new DefaultMQProducer(groupName);
@@ -99,7 +99,7 @@ public class RocketMqTests {
         }
 
 
-        @Test
+//        @Test
         public void consumer() throws InterruptedException, MQClientException {
 
             // 实例化消费者
@@ -129,7 +129,7 @@ public class RocketMqTests {
             System.out.printf("Consumer Started.%n");
         }
 
-    @Test
+//    @Test
     public void consumer1() throws InterruptedException, MQClientException {
 
         // 实例化消费者

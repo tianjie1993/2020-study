@@ -1,19 +1,17 @@
 package com.tianjie.study;
 
-import com.tianjie.study.mysql.TUser;
-import com.tianjie.study.mysql.UserMapper;
-import com.tianjie.study.mysql.UserService;
+import com.tianjie.study.y2020.mysql.TUser;
+import com.tianjie.study.y2020.mysql.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.RecursiveTask;
 
-@SpringBootTest
+
+
+//@SpringBootTest
 class ApplicationTests {
 
     @Autowired
@@ -25,8 +23,18 @@ class ApplicationTests {
     }
 
 
-    @Test
+    /**
+     *
+     * @author tian.jie
+     * @email tian.jie@rongzer.com
+     * @param
+     * @date 2020-08-19 15:31
+     * @return
+     */
+//    @Test
     void userInsert(){
+
+
         InsertTask task1 = new InsertTask(0);
         InsertTask task2 = new InsertTask(1000000);
         InsertTask task3 = new InsertTask(2000000);

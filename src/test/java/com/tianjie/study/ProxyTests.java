@@ -17,11 +17,11 @@ import java.lang.reflect.Proxy;
  * @auth tian.jie
  * @date {date} {time}
  */
-@SpringBootTest
+//@SpringBootTest
 public class ProxyTests {
 
 
-    @Test
+//    @Test
     public void JdkProxy(){
         A a = new Aimp();
         Class aclz = A.class;
@@ -37,7 +37,7 @@ public class ProxyTests {
 
     }
 
-    @Test
+//    @Test
     public void CglibProxy(){
         Enhancer enhancer = new Enhancer();
         //设置目标类的字节码文件

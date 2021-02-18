@@ -1,34 +1,27 @@
 package com.tianjie.study;
 
-import com.tianjie.study.mysql.TUser;
-import com.tianjie.study.mysql.UserService;
-import org.junit.jupiter.api.Test;
+import com.tianjie.study.y2020.mysql.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.RecursiveTask;
 
-@SpringBootTest
+//@SpringBootTest
 class SpringTests {
 
     @Autowired
     private UserService userService;
 
 
-    @Test
+//    @Test
     void contextLoads() {
 
     }
 
 
-    @Test
+//    @Test
     public void headlessTest() throws Exception {
         //设置Headless模式
         System.setProperty("java.awt.headless","false");
