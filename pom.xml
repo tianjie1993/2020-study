@@ -116,6 +116,11 @@
             <artifactId>redisson</artifactId>
             <version>3.5.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+            <version>7.10.0.Final</version>
+        </dependency>
     </dependencies>
 
     <build>

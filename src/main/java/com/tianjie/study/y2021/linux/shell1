@@ -1,0 +1,18 @@
+--设置自动登录
+cd /etc/gdm
+vi custom.conf
+[daemon]
+AutomaticLoginEnable=true
+AutomaticLogin=
+
+--文本文件操作
+gedit -图形界面编辑
+nano  -字符操作
+cat   -查看文本文件
+
+--centos 7 网卡默认名称
+ens33 ifconfig / ip a 查看地址
+
+--centos 7 修改网卡设置路径
+/etc/sysconfig/network-scripts
+
