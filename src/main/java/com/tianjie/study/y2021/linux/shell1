@@ -16,3 +16,28 @@ ens33 ifconfig / ip a 查看地址
 --centos 7 修改网卡设置路径
 /etc/sysconfig/network-scripts
 
+linux uid 0 判断是root 账号 查看 【id -u】
+
+--查看系统有谁在登录
+who , whoami, who am i
+
+--看各用户都在干嘛
+w
+
+--关闭图形界面 ，开启
+init 3 ,init 5
+startx - 只是开启图形，不属于模式切换，runlevel不会看到模式切换
+
+--查看工作模式切换
+runlevel
+返回 3 5 从文字界面切换到图形界面
+
+--查看sh 类型
+ cat /etc/shells
+ /bin/csh 切换shell exit 推出
+
+--创建文件
+> file
+
+--查看命令前面的格式,修改样式
+echo $PS1  > /etc/profile.d/env.sh  PS1='[\[\e[1;32m\]\u@\h \w]$ \[\e[0m\]'
