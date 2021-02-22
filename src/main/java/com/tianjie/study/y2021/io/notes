@@ -1,0 +1,7 @@
+应用层     http,https，ssh ,telnet
+
+传输层     TCP,UDP
+
+网络层     IP
+
+物理层     光线，宽带

@@ -1,4 +1,4 @@
-package com.tianjie.study.bissafe;
+package com.tianjie.study.y2020.bissafe;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
