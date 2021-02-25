@@ -1,11 +1,15 @@
 package com.tianjie.study.y2021.io;
 
+import com.tianjie.study.model.LittleBird;
+import com.tianjie.study.y2021.io.socketrpc.rcpserviceapi.SocketRpcRequest;
 import lombok.SneakyThrows;
 import sun.nio.ch.IOUtil;
 import sun.plugin.dom.html.HTMLFormElement;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.Charset;
@@ -28,13 +32,15 @@ public class ScocketServer {
                 public void run() {
                     System.out.println("接受到请求");
                     InputStream inputStream = accept.getInputStream();
-                    byte []bytes =new byte[1024];
-                    int len;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    while((len=inputStream.read(bytes))!=-1){
-                        stringBuilder.append(new String(bytes,0,len, "UTF-8"));
-                    }
-                    System.out.println("接受消息"+stringBuilder.toString());
+                    ObjectInputStream inputStream1 = new ObjectInputStream(inputStream);
+                    SocketRpcRequest request = (SocketRpcRequest) inputStream1.readObject();
+//                    byte []bytes =new byte[1024];
+//                    int len;
+//                    StringBuilder stringBuilder = new StringBuilder();
+//                    while((len=inputStream.read(bytes))!=-1){
+//                        stringBuilder.append(new String(bytes,0,len, "UTF-8"));
+//                    }
+                    System.out.println("接受消息"+request.getMethod());
                     inputStream.close();;
                     accept.close();
                 }
