@@ -1,0 +1,3 @@
+类加载卸载
+-XX:+TraceClassLoading -XX:+TraceClassUnloading
+显示类加载/卸载信息 ，内存空间影响 元数据空间

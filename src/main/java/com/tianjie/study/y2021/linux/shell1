@@ -41,3 +41,46 @@ runlevel
 
 --查看命令前面的格式,修改样式
 echo $PS1  > /etc/profile.d/env.sh  PS1='[\[\e[1;32m\]\u@\h \w]$ \[\e[0m\]'
+
+--查看命令类型
+type who
+
+--禁用命令,启用,查看
+enable -n command ,enable type ，help * 存在* 号就是仅用了
+
+--时间同步
+ntpdate xxxx.xx..xx.
+date 是系统时间
+clock 是硬件主板时间
+clock -s | --hctosys 系统时间改为硬件时间
+clock -w  硬件实际改为系统时间
+/etc/localtime 时区
+--centos 7
+timedatectl timezones-list --查看所有时区
+timedatectl status --查看时区
+timedatectl set-timezone "xxx"  设置时区
+cal -y 查看日历
+cal yyyy m 查看日历
+
+--设置时区 6和7 都可以
+tzselect
+
+--命令在第一次运行会吧地址写入到内存中。后面都会从这个地址拿命令
+hash 查看哪些命令已经hash 到内存中
+hash -d command 删除缓存
+hash -r 清除所有命令缓存
+which [-a] command [显示全部]查看外部命令位置
+
+whereis command 命令路径及文档路径
+
+--定义命令别名
+alias xx="ada" ，unalias 删除别名
+全局位置/etc/bashrc
+账号位置用户根目录  .bashrc
+alias > 内部命令> 外部命令
+
+--重启网络
+systemctl restart network
+
+
+

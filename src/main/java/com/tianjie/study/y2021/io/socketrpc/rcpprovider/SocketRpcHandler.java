@@ -2,7 +2,6 @@ package com.tianjie.study.y2021.io.socketrpc.rcpprovider;
 
 import com.tianjie.study.y2021.io.socketrpc.rcpserviceapi.SocketRpcRequest;
 import lombok.SneakyThrows;
-import sun.misc.IOUtils;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,12 +15,12 @@ public class SocketRpcHandler implements Runnable {
 
     private Socket socket;
 
-    private Object service;
+    private YrRpcServiceContext context;
 
 
-    public SocketRpcHandler(Socket socket, Object service) {
+    public SocketRpcHandler(Socket socket, YrRpcServiceContext context) {
         this.socket = socket;
-        this.service = service;
+        this.context = context;
     }
 
     @SneakyThrows
@@ -62,8 +61,8 @@ public class SocketRpcHandler implements Runnable {
             types[i] = args[i].getClass();
         }
         try {
-            Method m = service.getClass().getMethod(method,types);
-            return m.invoke(service,args);
+            Method m = context.getService(clz.getName()).getClass().getMethod(method,types);
+            return m.invoke(context.getService(clz.getName()),args);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
