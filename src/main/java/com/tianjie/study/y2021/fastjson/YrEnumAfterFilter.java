@@ -44,7 +44,7 @@ public class YrEnumAfterFilter extends AfterFilter {
      * @version 1.0
      * @date 2021-02-19 21:21
      */
-    private Object getEnumValue(YrField yrField, Object dictCode) {
+    public Object getEnumValue(YrField yrField, Object dictCode) {
         for (Class<? extends YrBaseEnum> aClass : yrField.enumClasses()) {
             if (!aClass.isEnum()) {
                 continue;
