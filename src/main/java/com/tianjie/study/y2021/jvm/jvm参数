@@ -40,6 +40,7 @@ java启动参数共分为三类；
 
 -enableassertions[:<package name>"..." | :<class name> ]
 -ea[:<package name>"..." | :<class name> ]
+与assert 关键字一起使用。默认不开启
  上述参数就用来设置jvm是否启动断言机制（从JDK 1.4开始支持），缺省时jvm关闭断言机制。
  用-ea 可打开断言机制，不加<packagename>和classname时运行所有包和类中的断言，如果希望只运行某些包或类中的断言，可将包 名或类名加到-ea之后。例如要启动包com.wombat.fruitbat中的断言，可用命令java -ea:com.wombat.fruitbat...<Main Class>。
 

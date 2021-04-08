@@ -82,5 +82,26 @@ alias > 内部命令> 外部命令
 --重启网络
 systemctl restart network
 
+--关机
+reboot
+shutdown -r 重启
+shotdown -c 取消
+
+.  /etc/sysconfig/i18n 生效配置
+
+--广播消息
+wall 'xxxx'
+
+--screen
+
+screen -s xxxx 开启一个会话
+screen -x xxxx 加入一个会话
+screen -ls 查看所有会话
+
+--添加启动banner
+vi /etc/motd
+touch 创建文件
+{1..100} 从1到100 可以创建文件touch file{1..100}
+
 
 

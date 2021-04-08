@@ -10,7 +10,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@JSONType(serialzeFilters = {YrEnumAfterFilter.class})
+//@JSONType(serialzeFilters = {YrEnumAfterFilter.class})
 public class LittleBird implements Serializable {
 
     private String name;

@@ -6,10 +6,7 @@ import com.tianjie.study.y2021.fastjson.BirdKindEnum;
 import com.tianjie.study.y2021.io.nio.client.NioClient;
 import io.netty.channel.local.LocalAddress;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -18,6 +15,7 @@ import java.nio.channels.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -117,6 +115,8 @@ public class NioSocketServer {
         byte[] bytes = bout.toByteArray();
         ByteBuffer writebuff = ByteBuffer.wrap(bytes);
         socketChannel.write(writebuff);
+        FileOutputStream stream = new FileOutputStream("");
+        FileChannel fileChannel = stream.getChannel();
 //        // 2. 分配缓存区
 //        ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
 //        // 3. 清空缓存区
@@ -135,7 +135,7 @@ public class NioSocketServer {
         socketChannel.register(selector,SelectionKey.OP_READ);
     }
 
-    public static void main(String[] args) throws IOException {
+    public  static void main(String[] args) throws IOException {
         new NioSocketServer().service();
     }
 }
