@@ -15,8 +15,17 @@ public class LittleBird implements Serializable {
 
     private String name;
 
+    private double aaa;
+
     @YrField(key="BirdKindEnum",enumClasses = {BirdKindEnum.class})
     private String kind;
+
+    public void aaa(){
+        String b = "ad";
+        String b1 = "ad";
+        String c = getName();
+
+    }
 
 
 }

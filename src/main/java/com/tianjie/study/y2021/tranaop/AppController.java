@@ -17,4 +17,18 @@ public class AppController {
         System.out.println("主线程事务提交成功");
         return "success";
     }
+
+
+    @GetMapping("/testThreadTransaction")
+    public Object testThreadTransaction() {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                testService.testThreadTransction();
+
+            }
+        });
+        t.start();
+        return "success";
+    }
 }

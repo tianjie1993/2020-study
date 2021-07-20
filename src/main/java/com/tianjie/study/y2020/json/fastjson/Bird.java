@@ -11,4 +11,9 @@ public  class Bird {
     @JSONField(serializeUsing = ModelValueSerializer.class)
     private String name;
 
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("被回收了");
+    }
+
 }

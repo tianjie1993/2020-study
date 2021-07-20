@@ -1,12 +1,12 @@
 package com.tianjie.study;
 
+import com.tianjie.study.y2020.mysql.UserService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cglib.proxy.Callback;
-import org.springframework.cglib.proxy.Enhancer;
-import org.springframework.cglib.proxy.MethodInterceptor;
-import org.springframework.cglib.proxy.MethodProxy;
+import org.springframework.cglib.proxy.*;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -17,11 +17,20 @@ import java.lang.reflect.Proxy;
  * @auth tian.jie
  * @date {date} {time}
  */
-//@SpringBootTest
+@SpringBootTest
 public class ProxyTests {
 
+    @Autowired
+    private UserService userService;
 
-//    @Test
+    @Test
+    private void test1(){
+        System.out.println(1);
+        userService.test();
+    }
+
+
+    @Test
     public void JdkProxy(){
         A a = new Aimp();
         Class aclz = A.class;
@@ -37,16 +46,28 @@ public class ProxyTests {
 
     }
 
-//    @Test
+    @Test
     public void CglibProxy(){
         Enhancer enhancer = new Enhancer();
         //设置目标类的字节码文件
         enhancer.setSuperclass(Aimp.class);
+        enhancer.setInterfaces(new Class[]{B.class});
         //设置回调函数
-        enhancer.setCallbacks(new Callback[]{new MyMethodInterceptor(),new MyMethodInterceptor2()});
-
+        enhancer.setCallbacks(new Callback[]{new MyMethodInterceptor(),new BDispatcher(new Bimp())});
+        enhancer.setCallbackFilter(new CallbackFilter() {
+            @Override
+            public int accept(Method method) {
+                if("b".equals(method.getName())){
+                    return 1;
+                }
+                return 0;
+            }
+        });
         //这里的creat方法就是正式创建代理类
         A proxyDog = (A)enhancer.create();
+        if(proxyDog instanceof B){
+            ((B) proxyDog).b();
+        }
         //调用代理类的eat方法
         proxyDog.a();
 
@@ -56,6 +77,11 @@ public class ProxyTests {
 
 
 
+
+}
+interface B{
+
+    void b();
 
 }
 interface A{
@@ -69,6 +95,30 @@ class Aimp implements  A{
     public void a() {
         System.out.println("i am a");
     }
+}
+
+class BDispatcher implements Dispatcher, Serializable {
+
+    private B b;
+
+    public BDispatcher(B b) {
+        this.b = b;
+    }
+
+    @Override
+    public Object loadObject() throws Exception {
+        return this.b;
+    }
+}
+
+class Bimp implements  B {
+
+    @Override
+    public void b() {
+        System.out.println("i am B");
+    }
+
+
 }
 class InvocationHandlerImpl  implements InvocationHandler {
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.RecursiveTask;
 
 
@@ -20,6 +21,36 @@ class ApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+
+    @Test
+    void testOp64() throws InterruptedException {
+//        Long p1,p2,p3,p4,p5,p6,p7;
+        Long counts = 1_0000_0000L;
+//        Long p8,p9,p10,p11,p12,p13,p14;
+
+        Long[]x = new Long[2];
+        CountDownLatch downLatch = new CountDownLatch(2);
+        Thread t1 = new Thread(()->{
+            for (long i = 0; i < counts; i++) {
+                x[1] = i;
+            }
+            downLatch.countDown();
+        });
+
+        Thread t2 = new Thread(()->{
+            for (long i = 0; i < counts; i++) {
+                x[0] = i;
+            }
+            downLatch.countDown();
+        });
+        long d1 = System.currentTimeMillis();
+        t1.start();
+        t2.start();
+        downLatch.await();
+        System.out.println(System.currentTimeMillis()-d1);
+
     }
 
 
