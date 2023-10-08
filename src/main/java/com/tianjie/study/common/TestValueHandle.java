@@ -7,7 +7,12 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
-
+/**
+ * 
+ *
+ * @author tian.jie
+ * @date 2023-10-08 14:04
+ */
 public class TestValueHandle implements HandlerMethodReturnValueHandler {
 
     private RequestResponseBodyMethodProcessor requestResponseBodyMethodProcessor;
